@@ -1,0 +1,87 @@
+<div class="leftpanel">
+ <div class="leftpanelinner">
+   <div class="media leftpanel-profile">
+     <div class="media-left">
+
+     </div>
+     <div class="media-body">
+       <h4 class="media-heading">{{session.data.authenticated.first_name}}&nbsp;{{session.data.authenticated.last_name}}<a data-toggle="collapse" data-target="#loguserinfo" class="pull-right"><i class="fa fa-angle-down"></i></a></h4>
+     </div>
+   </div>
+
+   <div class="leftpanel-userinfo collapse" id="loguserinfo">
+     {{#if session.data.authenticated.address}}
+       <h5 class="sidebar-title">Address</h5>
+       <address>
+         {{session.data.authenticated.address.street}}<br/>
+         {{session.data.authenticated.address.city}}&nbsp;{{session.data.authenticated.address.state}}<br/>
+         {{session.data.authenticated.address.country}}&nbsp;{{session.data.authenticated.address.zip}}
+       </address>
+     {{/if}}
+     <h5 class="sidebar-title">Contact</h5>
+     <ul class="list-group">
+       <li class="list-group-item">
+         <label class="pull-left">Email</label>
+         <span class="pull-right">{{session.data.authenticated.email}}</span>
+       </li>
+       {{#if session.data.authenticated.mobile_phone}}
+         <li class="list-group-item">
+           <label class="pull-left">Mobile</label>
+           <span class="pull-right">{{session.data.authenticated.phone}}</span>
+         </li>
+       {{/if}}
+     </ul>
+   </div><!-- leftpanel-userinfo -->
+
+   <ul class="nav nav-tabs nav-justified nav-sidebar">
+     <li class="tooltips active" data-toggle="tooltip" title="Main Menu"><a data-toggle="tab" data-target="#mainmenu"><i class="tooltips fa fa-ellipsis-h"></i></a></li>
+     <li class="tooltips" data-toggle="tooltip" title="Settings"><a data-toggle="tab" data-target="#settings"><i class="fa fa-cog"></i></a></li>
+     <li class="tooltips" data-toggle="tooltip" title="Log Out"><a {{action 'logout'}}><i class="fa fa-sign-out"></i></a></li>
+   </ul>
+
+   <div class="tab-content">
+
+     <!-- ######################## MAIN MENU ##################### -->
+
+     <div class="tab-pane active" id="mainmenu">
+       <h5 class="sidebar-title">Main Menu</h5>
+       <ul class="nav nav-pills nav-stacked nav-quirk">
+         <li>{{#link-to 'staff.dashboard'}}<i class="fa fa-tachometer"></i> <span>Dashboard</span>{{/link-to}}</li>
+         <li>{{#link-to 'staff.terminal'}}<span class="badge pull-right"></span><i class="fa fa-pied-piper-alt"></i> <span>Terminal</span>{{/link-to}}</li>
+       </ul>
+     </div>
+
+     <!-- ################### ADMIN MENUE ################### -->
+
+     <div class="tab-pane" id="settings">
+       <h5 class="sidebar-title">Admin Settings</h5>
+       <ul class="nav nav-pills nav-stacked nav-quirk">
+         <li class="nav-parent">
+           <a><i class="fa fa-envelope"></i><span>Users</span></a>
+           <ul class="children">
+             <li>{{#link-to 'admin.users'}}<span>All</span>{{/link-to}}</li>
+           </ul>
+         </li>
+         <li class="nav-parent">
+           <a><i class="fa fa-envelope"></i><span>Holdings</span></a>
+           <ul class="children">
+             <li>{{#link-to 'admin.holdings'}}<span>All</span>{{/link-to}}</li>
+           </ul>
+         </li>
+         <li class="nav-parent">
+           <a><i class="fa fa-envelope"></i><span>Authors</span></a>
+           <ul class="children">
+             <li>{{#link-to 'admin.authors'}}<span>All</span>{{/link-to}}</li>
+           </ul>
+         </li>
+         <li class="nav-parent">
+           <a><i class="fa fa-envelope"></i><span>Publishers</span></a>
+           <ul class="children">
+             <li>{{#link-to 'admin.publishers'}}<span>All</span>{{/link-to}}</li>
+           </ul>
+         </li>
+       </ul>
+     </div>
+   </div>
+ </div>
+</div>

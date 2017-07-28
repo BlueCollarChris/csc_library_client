@@ -1,0 +1,19 @@
+<div class="text-right">
+  <ul class="pagination">
+    {{#if previous.pageNumber}}
+      <li class="paginate_button previous">{{#link-to routeName (query-params page=previous.pageNumber)}}Previous{{/link-to}}</li>
+    {{else}}
+      <li class="paginate_button previous disabled"><a>Previous</a></li>
+    {{/if}}
+    {{#if current.pageNumber}}
+      <li class="paginate_button active"><a>{{current.pageNumber}}</a></li>
+    {{else}}
+      <li class="paginate_button active"><a>1</a></li>
+    {{/if}}
+    {{#if next.pageNumber}}
+      <li class="paginate_button next">{{#link-to routeName (query-params page=next.pageNumber)}}Next{{/link-to}}</li>
+    {{else}}
+      <li class="paginate_button next disabled"><a>Next</a></li>
+    {{/if}}
+  </ul>
+</div>

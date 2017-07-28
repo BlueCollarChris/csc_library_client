@@ -1,5 +1,14 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+{{#if session.isAuthenticated}}
+  {{site-header action='invalidateUser'}}
+  {{site-nav action='invalidateUser'}}
+  <section>
+    <div class="mainpanel">
+      <div class="contentpanel">
+        {{outlet}}
+        {{outlet 'modal'}}
+      </div>
+    </div>
+  </section>
+{{else}}
+  {{outlet}}
+{{/if}}
