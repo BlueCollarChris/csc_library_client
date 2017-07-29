@@ -48,8 +48,9 @@ Router.map(function() {
       this.route('view');
     });
   });
-  this.route('sign-in');
+
   this.route('sign-up');
+  this.route('sign-in');
 });
 
 export default Router;

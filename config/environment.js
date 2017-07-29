@@ -25,16 +25,18 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth'] = {
+    baseUrl: 'sign-in',
     authenticationRoute: 'sign-in',
-    routeIfAlreadyAuthenticated: 'index'
+    routeIfAlreadyAuthenticated: 'index',
+    routeIfAfterAuthentication: 'index'
   };
 
   if (environment === 'development') {
-    ENV.host = 'http://localhost:3000'
+    ENV.HOST = 'http://localhost:3000'
   }
 
   if (environment === 'production') {
-    ENV.host = 'http://localhost:3000'
+    ENV.HOST = 'http://localhost:3000'
   }
 
   return ENV;

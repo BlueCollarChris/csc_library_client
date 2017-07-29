@@ -20,19 +20,21 @@ export default Base.extend({
         type: 'POST',
         data: {email: email, password: password}
       }).then((response) => {
+        console.log(response)
+        let data = response.data;
         Ember.run(function() {
           resolve({
-            id: response.user.id,
-            email: response.user.email,
-            phone: response.user.phone,
-            token: response.user.token,
-            first_name: response.user.first_name,
-            last_name: response.user.last_name,
-            user_type: response.user.last_name,
-            address: response.address,
-            isStudent: response.isStudent,
-            isStaff: response.isStaff,
-            isCommunityUser: response.isCommunityUser
+            id: data.user.id,
+            email: data.user.email,
+            phone: data.user.phone,
+            token: data.user.token,
+            first_name: data.user.first_name,
+            last_name: data.user.last_name,
+            user_type: data.user.last_name,
+            address: data.address,
+            isStudent: data.isStudent,
+            isStaff: data.isStaff,
+            isCommunityUser: data.isCommunityUser
           });
         });
       }, (xhr, status, error) => {

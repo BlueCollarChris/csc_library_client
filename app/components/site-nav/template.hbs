@@ -24,7 +24,7 @@
          <label class="pull-left">Email</label>
          <span class="pull-right">{{session.data.authenticated.email}}</span>
        </li>
-       {{#if session.data.authenticated.mobile_phone}}
+       {{#if session.data.authenticated.phone}}
          <li class="list-group-item">
            <label class="pull-left">Mobile</label>
            <span class="pull-right">{{session.data.authenticated.phone}}</span>
@@ -35,7 +35,9 @@
 
    <ul class="nav nav-tabs nav-justified nav-sidebar">
      <li class="tooltips active" data-toggle="tooltip" title="Main Menu"><a data-toggle="tab" data-target="#mainmenu"><i class="tooltips fa fa-ellipsis-h"></i></a></li>
-     <li class="tooltips" data-toggle="tooltip" title="Settings"><a data-toggle="tab" data-target="#settings"><i class="fa fa-cog"></i></a></li>
+     {{#if session.data.authenticated.isStaff}}
+        <li class="tooltips" data-toggle="tooltip" title="Settings"><a data-toggle="tab" data-target="#settings"><i class="fa fa-cog"></i></a></li>
+     {{/if}}
      <li class="tooltips" data-toggle="tooltip" title="Log Out"><a {{action 'logout'}}><i class="fa fa-sign-out"></i></a></li>
    </ul>
 
@@ -46,8 +48,13 @@
      <div class="tab-pane active" id="mainmenu">
        <h5 class="sidebar-title">Main Menu</h5>
        <ul class="nav nav-pills nav-stacked nav-quirk">
-         <li>{{#link-to 'staff.dashboard'}}<i class="fa fa-tachometer"></i> <span>Dashboard</span>{{/link-to}}</li>
-         <li>{{#link-to 'staff.terminal'}}<span class="badge pull-right"></span><i class="fa fa-pied-piper-alt"></i> <span>Terminal</span>{{/link-to}}</li>
+         {{#if session.data.authenticated.isStaff}}
+           <li>{{#link-to 'staff.dashboard'}}<i class="fa fa-tachometer"></i> <span>Dashboard</span>{{/link-to}}</li>
+           <li>{{#link-to 'staff.terminal'}}<span class="badge pull-right"></span><i class="fa fa-terminal"></i> <span>Terminal</span>{{/link-to}}</li>
+         {{else}}
+         <li>{{#link-to 'customer.dashboard'}}<i class="fa fa-tachometer"></i> <span>Dashboard</span>{{/link-to}}</li>
+         <li>{{#link-to 'customer.profile'}}<span class="badge pull-right"></span><i class="fa fa-user"></i> <span>Terminal</span>{{/link-to}}</li>
+         {{/if}}
        </ul>
      </div>
 
@@ -56,29 +63,17 @@
      <div class="tab-pane" id="settings">
        <h5 class="sidebar-title">Admin Settings</h5>
        <ul class="nav nav-pills nav-stacked nav-quirk">
-         <li class="nav-parent">
-           <a><i class="fa fa-envelope"></i><span>Users</span></a>
-           <ul class="children">
-             <li>{{#link-to 'admin.users'}}<span>All</span>{{/link-to}}</li>
-           </ul>
+         <li>
+           {{#link-to 'admin.users'}}<i class="fa fa-users"></i><span>Users</span>{{/link-to}}
          </li>
-         <li class="nav-parent">
-           <a><i class="fa fa-envelope"></i><span>Holdings</span></a>
-           <ul class="children">
-             <li>{{#link-to 'admin.holdings'}}<span>All</span>{{/link-to}}</li>
-           </ul>
+         <li>
+           {{#link-to 'admin.holdings'}}<i class="fa fa-database"></i><span>Holdings</span>{{/link-to}}
          </li>
-         <li class="nav-parent">
-           <a><i class="fa fa-envelope"></i><span>Authors</span></a>
-           <ul class="children">
-             <li>{{#link-to 'admin.authors'}}<span>All</span>{{/link-to}}</li>
-           </ul>
+         <li>
+           {{#link-to 'admin.authors'}}<i class="fa fa-pencil"></i><span>Authors</span>{{/link-to}}
          </li>
-         <li class="nav-parent">
-           <a><i class="fa fa-envelope"></i><span>Publishers</span></a>
-           <ul class="children">
-             <li>{{#link-to 'admin.publishers'}}<span>All</span>{{/link-to}}</li>
-           </ul>
+         <li>
+           {{#link-to 'admin.publishers'}}<i class="fa fa-bank"></i><span>Publishers</span>{{/link-to}}
          </li>
        </ul>
      </div>
