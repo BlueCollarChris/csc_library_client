@@ -20,7 +20,6 @@ export default Base.extend({
         type: 'POST',
         data: {email: email, password: password}
       }).then((response) => {
-        console.log(response)
         let data = response.data;
         Ember.run(function() {
           resolve({

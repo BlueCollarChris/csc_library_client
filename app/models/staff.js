@@ -17,7 +17,7 @@ export default DS.Model.extend({
   }),
 
   isSuper: Ember.computed('role', function(){
-    return this.get('role') === 'super_user';
+    return this.get('role') === 'super_admin';
   }),
 
 });

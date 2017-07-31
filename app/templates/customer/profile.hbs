@@ -1,1 +1,164 @@
-{{outlet}}
+
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li>Profile</li>
+    <li class="active">{{user.fullName}}</li>
+  </ol>
+  <div class="panel">
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class='col-xs-12 col-sm-9'>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">First Name <span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="first-name" value=user.first_name class="form-control" placeholder="Type your first name..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="first-name" value=user.first_name class="form-control" placeholder="Type your first name..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Last Name <span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="last-name" value=user.last_name class="form-control" placeholder="Type your last name..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="last-name" value=user.last_name class="form-control" placeholder="Type your last name..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Email <span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="email" value=user.email class="form-control" placeholder="Type your email..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="email" value=user.email class="form-control" placeholder="Type your email..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Phone <span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="phone" value=user.phone class="form-control" placeholder="Type your mobile phone..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="phone" value=user.phone class="form-control" placeholder="Type your mobile phone..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Street<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="street" value=user.address.street class="form-control" placeholder="Type your street..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="street" value=user.address.street class="form-control" placeholder="Type your street..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Apt/Suite #</label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input  type="text" name="apt" value=user.address.apt class="form-control" placeholder="Type your apt/suite #..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="apt" value=user.address.apt class="form-control" placeholder="Type your apt/suite #..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">City<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="city" value=user.address.city class="form-control" placeholder="Type your city..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="city" value=user.address.city class="form-control" placeholder="Type your city..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">State<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="state" value=user.address.state class="form-control" placeholder="Type your state..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="state" value=user.address.state class="form-control" placeholder="Type your state..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Country<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input type="text" name="country" value=user.address.country class="form-control" placeholder="Type your country..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="country" value=user.address.country class="form-control" placeholder="Type your country..."}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Zip Code<span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{#if user.isEditing}}
+                {{input  type="text" name="zip" value=user.address.zip class="form-control" placeholder="Type your zip code..."}}
+              {{else}}
+                {{input disabled='true'  type="text" name="zip" value=user.address.zip class="form-control" placeholder="Type your zip code..."}}
+              {{/if}}
+            </div>
+          </div>
+          {{#if session.data.authenticated.isStudent}}
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Class<span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{#if user.isEditing}}
+                  {{input type="number" name="class-number" min='1' max='4' value=user.student.student_class class="form-control" placeholder="Freshman, Sophmore, Junior, Senior..."}}
+                {{else}}
+                  {{input disabled='true'  type="number" name="class-number" min='1' max='4' value=user.student.student_class class="form-control" placeholder="Freshman, Sophmore, Junior, Senior..."}}
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Major</label>
+              <div class="col-sm-8">
+                {{#if user.isEditing}}
+                  {{input type="text" name="major" value=user.student.major class="form-control" placeholder="Type your major..."}}
+                {{else}}
+                  {{input disabled='true'  type="text" name="major" value=user.student.major class="form-control" placeholder="Type your major..."}}
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Minor</label>
+              <div class="col-sm-8">
+                {{#if user.isEditing}}
+                  {{input type="text" name="minor" value=user.student.minor class="form-control" placeholder="Type your minor..."}}
+                {{else}}
+                  {{input disabled='true'  type="text" name="minor" value=user.student.minor class="form-control" placeholder="Type your minor..."}}
+                {{/if}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if session.data.authenticated.isCommunityUser}}
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Member Expiration Date<span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{format-date user.community_user.expiration_dt}}
+              </div>
+            </div>
+          {{/if}}
+          <div class="row">
+            <div class="col-sm-9 col-sm-offset-3">
+              {{#if user.isEditng}}
+                <button class="btn btn-quirk btn-wide btn-success btn-stroke">Save</button>
+              {{else}}
+                <button class="btn btn-quirk btn-wide btn-primary btn-stroke">Edit</button>
+                <button class="btn btn-quirk btn-wide btn-danger btn-stroke" {{action 'requestPassword'}}>Request New Password</button>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

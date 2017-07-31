@@ -1,1 +1,48 @@
-{{outlet}}
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li class="active">Dashboard</li>
+  </ol>
+
+  <div class="panel">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6"><h4>Currently Checked Out</h4></div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table nomargin">
+          <thead>
+            <tr>
+              <th class='text-center'>View</th>
+              <th>Checkout Date</th>
+              <th>Due Date</th>
+              <th>Section</th>
+              <th>Book</th>
+              <th>Customer</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each records as |record|}}
+              <tr>
+                <td class='text-center'>
+                  {{#link-to 'admin.users.view' record.user.id}}<i class="fa fa-search"></i>{{/link-to}}
+                </td>
+                <td>{{format-date record.log_entry.chekout_dt}}</td>
+                <td>{{format-date record.log_entry.due_dt}}</td>
+                <td>{{record.holding.name}}</td>
+                <td>{{record.item.title}}</td>
+                <td>{{record.user.last_name}}, {{record.user.first_name}}</td>
+                <td>{{record.user.email}}</td>
+                <td>{{format-phone record.user.phone}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{/if}}

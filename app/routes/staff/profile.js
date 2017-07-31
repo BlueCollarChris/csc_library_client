@@ -8,5 +8,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         this.transitionTo('index');
       }
     }
+  },
+  model(){
+    const session = this.get('session');
+    return Ember.RSVP.hash({
+      user: this.store.findRecord('user', session.get('data.authenticated.id'))
+    });
+  },
+  setupController(controller, {user}){
+    this._super(...arguments);
+    controller.set('user', user);
   }
 });

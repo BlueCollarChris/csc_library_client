@@ -64,7 +64,7 @@
             <div class="col-sm-8">
               {{#each authors as |author|}}
                 <label class="ckbox ckbox-primary">
-                  <input onchange={{action 'addAuthor' author}} checked={{author.isChecked}} type="checkbox"/><span>{{author.fullName}}</span>
+                  <input onchange={{action 'addAuthor' author}} disabled={{disableCheck}} checked={{author.isChecked}} type="checkbox"/><span>{{author.fullName}}</span>
                 </label>
               {{/each}}
             </div>

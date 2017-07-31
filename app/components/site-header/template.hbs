@@ -15,7 +15,7 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu pull-right">
-                {{#if session.authenticated.isStaff}}
+                {{#if session.data.authenticated.isStaff}}
                   <li>{{#link-to 'staff.profile'}}<i class="fa fa-user"></i> My Profile{{/link-to}}</li>
                 {{else}}
                   <li>{{#link-to 'customer.profile'}}<i class="fa fa-user"></i> My Profile{{/link-to}}</li>

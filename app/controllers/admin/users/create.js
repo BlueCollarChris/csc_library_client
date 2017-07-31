@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
       return this.store.createRecord('student');
     }
   }),
+  
   actions: {
     updateUserRole(role){
       this.get('user_type').set('role', role);

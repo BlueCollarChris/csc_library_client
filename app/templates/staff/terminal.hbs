@@ -1,1 +1,6 @@
-{{outlet}}
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li class="active">Terminal</li>
+  </ol>
+{{/if}}

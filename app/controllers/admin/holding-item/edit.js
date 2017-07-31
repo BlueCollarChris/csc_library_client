@@ -29,16 +29,17 @@ export default Ember.Controller.extend({
     },
     addAuthor(author){
       let selectedAuthors = this.get('holding_item').get('authors');
-      if(selectedAuthors.get('length') >= 3){
-        alert('Only Three Authors Allowed');
-        return author.set('isChecked', false);
-      }
-      if(author.get('isChecked')){
-        author.set('isChecked', false);
-        selectedAuthors.removeObject(author);
-      } else {
+      if(selectedAuthors.get('length') === 3 && !author.get('isChecked')){
         author.set('isChecked', true);
-        selectedAuthors.pushObject(author);
+        alert('Only Three Authors Allowed');
+      } else {
+        if(author.get('isChecked')){
+          author.set('isChecked', false);
+          selectedAuthors.removeObject(author);
+        } else {
+          author.set('isChecked', true);
+          selectedAuthors.pushObject(author);
+        }
       }
     },
     addPublisher(publisher){
@@ -47,7 +48,7 @@ export default Ember.Controller.extend({
         publisher.set('isChecked', false);
         return;
       }
-      
+
       this.get('holding_item').set('publisher_id', publisher.get('id'));
       this.get('publishers').forEach((pub)=>{
         if(publisher.get('id') === pub.get('id')){
