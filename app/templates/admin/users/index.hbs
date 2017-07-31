@@ -1,0 +1,62 @@
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li class="active">Users</li>
+  </ol>
+
+  <div class="panel">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6"><h4>Library Users</h4></div>
+        <div class="col-xs-6 text-right">
+          <button {{action 'clearFilters'}} class='btn btn-sm btn-stroke btn-danger'>Clear Filters</button>
+          {{#link-to 'admin.users.create' class='btn btn-sm btn-stroke btn-primary'}}<i class='fa fa-plus'></i>&nbsp;Add User{{/link-to}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table nomargin">
+          <thead>
+            <tr>
+              <th class='text-center'>View</th>
+              <th>Last Name</th>
+              <th>First Name</th>
+              <th>Type</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th class='text-center'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class='text-center'>____</td>
+              <td><input onchange={{action 'updateParam' 'last_name'}} type='text' class='form-control' value=''/></td>
+              <td><input onchange={{action 'updateParam' 'first_name'}} type='text' class='form-control' value=''/></td>
+              <td>{{array-select content=user_types placeholder='Type...' value=user_type}}</td>
+              <td><input onchange={{action 'updateParam' 'email'}} type='text' class='form-control' value=''/></td>
+              <td><input onchange={{action 'updateParam' 'phone'}} type='text' class='form-control' value=''/></td>
+              <td class='text-center'>____</td>
+            </tr>
+            {{#each users as |user|}}
+              <tr>
+                <td class='text-center'>
+                  {{#link-to 'admin.users.view' user.id}}<i class="fa fa-search"></i>{{/link-to}}
+                </td>
+                <td>{{user.last_name}}</td>
+                <td>{{user.first_name}}</td>
+                <td>{{user.user_type}}</td>
+                <td>{{user.email}}</td>
+                <td>{{format-phone user.phone}}</td>
+                <td class='text-center'>
+                  {{#link-to 'admin.users.edit' user.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{page-links pagination=pagination routeName='admin.users'}}
+    </div>
+  </div>
+{{/if}}

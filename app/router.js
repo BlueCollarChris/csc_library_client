@@ -11,41 +11,45 @@ Router.map(function() {
     this.route('terminal');
     this.route('dashboard');
     this.route('profile');
-    this.route('periodicals');
-    this.route('references');
-    this.route('circulations');
   });
   this.route('customer', function() {
     this.route('dashboard');
     this.route('profile');
   });
   this.route('admin', function() {
+    this.route('authors', function(){
+
+    });
+    this.route('publishers', function(){
+
+    });
     this.route('users', function() {
-      this.route('view');
-      this.route('create');
-      this.route('edit');
-    });
-    this.route('authors', function() {
-      this.route('create');
-      this.route('view');
-      this.route('edit');
-    });
-    this.route('publishers', function() {
-      this.route('edit');
-      this.route('view');
-      this.route('create');
+      this.route('view', {
+        path: '/view/:id'
+      });
+      this.route('create', {
+        path: '/create'
+      });
+      this.route('edit', {
+        path: '/edit/:id'
+      });
     });
     this.route('holdings', function() {
-      this.route('view');
+      this.route('view', {
+        path: '/view/:id'
+      });
       this.route('create');
-      this.route('edit');
+      this.route('edit', {
+        path: '/edit/:id'
+      });
     });
-
     this.route('holding-item', function() {
-      this.route('edit');
-      this.route('create');
-      this.route('update');
-      this.route('view');
+      this.route('edit', {
+        path: '/edit/:section/:id'
+      });
+      this.route('create', {
+        path: '/create/:holding_id/:section'
+      });
     });
   });
 

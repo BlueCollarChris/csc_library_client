@@ -1,1 +1,109 @@
-{{outlet}}
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li>{{#link-to 'admin.holdings'}}Holdings{{/link-to}}</li>
+    <li class="active">{{holding.title}}</li>
+  </ol>
+
+  <div class="panel">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6"><h4>{{holding.title}} Items</h4></div>
+        <div class="col-xs-6 text-right">
+          <button {{action 'clearFilters'}} class='btn btn-sm btn-stroke btn-danger'>Clear Filters</button>
+          {{#link-to 'admin.holding-item.create' holding.id holding.section class='btn btn-sm btn-stroke btn-primary'}}<i class='fa fa-plus'></i>&nbsp;Add Item{{/link-to}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table nomargin">
+          <thead>
+            {{#if holding.isCirculation}}
+              <tr>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Publisher</th>
+                <th>Authors</th>
+                <th class='text-center'>Actions</th>
+              </tr>
+            {{/if}}
+            {{#if holding.isReference}}
+              <tr>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Publisher</th>
+                <th>Authors</th>
+                <th class='text-center'>Actions</th>
+              </tr>
+            {{/if}}
+            {{#if holding.isPeriodical}}
+              <tr>
+                <th>Title</th>
+                <th>Volume</th>
+                <th>Volume Number</th>
+                <th>Publisher</th>
+                <th>Authors</th>
+                <th class='text-center'>Actions</th>
+              </tr>
+            {{/if}}
+          </thead>
+          <tbody>
+            {{#if holding.isCirculation}}
+              {{#each circulations as |item|}}
+                <tr>
+                  <td>{{item.title}}</td>
+                  <td>{{item.subtitle}}</td>
+                  <td>{{item.publisher.name}}</td>
+                  <td>
+                    {{#each item.authors as |author|}}
+                      {{author.fullName}}<br/>
+                    {{/each}}
+                  </td>
+                  <td class='text-center'>
+                    {{#link-to 'admin.holding-item.edit' holding.section item.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                  </td>
+                </tr>
+              {{/each}}
+            {{/if}}
+            {{#if holding.isReference}}
+              {{#each references as |item|}}
+                <tr>
+                  <td>{{item.title}}</td>
+                  <td>{{item.subtitle}}</td>
+                  <td>{{item.publisher.name}}</td>
+                  <td>
+                    {{#each item.authors as |author|}}
+                      {{author.fullName}}<br/>
+                    {{/each}}
+                  </td>
+                  <td class='text-center'>
+                    {{#link-to 'admin.holding-item.edit' holding.section item.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                  </td>
+                </tr>
+              {{/each}}
+            {{/if}}
+            {{#if holding.isPeriodical}}
+              {{#each periodicals as |item|}}
+                <tr>                  
+                  <td>{{item.title}}</td>
+                  <td>{{item.volume}}</td>
+                  <td>{{item.volume_no}}</td>
+                  <td>{{item.publisher.name}}</td>
+                  <td>
+                    {{#each item.authors as |author|}}
+                      {{author.fullName}}<br/>
+                    {{/each}}
+                  </td>
+                  <td class='text-center'>
+                    {{#link-to 'admin.holding-item.edit' holding.section item.id}}<i class="fa fa-pencil"></i>{{/link-to}}
+                  </td>
+                </tr>
+              {{/each}}
+            {{/if}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{/if}}

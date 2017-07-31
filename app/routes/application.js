@@ -5,13 +5,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   session: Ember.inject.service(),
   setupController(){
     this._super(...arguments);
-    if(this.get('session').get('isAuthenticated')){
-      if(this.get('session').get('data.authenticated.isStaff')){
-        this.transitionTo('staff.dashboard');
-      } else {
-        this.transitionTo('customer.dashboard');
-      }
-    } else {
+    if(!this.get('session').get('isAuthenticated')){
       this.transitionTo('sign-in');
     }
   },
@@ -24,7 +18,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       }
     },
     invalidateUser(){
-      this.get('session').invalidate();      
+      this.get('session').invalidate();
     }
   }
 });

@@ -1,1 +1,86 @@
-{{outlet}}
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li>{{#link-to 'admin.holdings'}}Holdings{{/link-to}}</li>
+    <li>{{#link-to 'admin.holdings.view' holding_item.holding_id}}{{section}}{{/link-to}}</li>
+    <li class="active">Edit Item</li>
+  </ol>
+  <div class="panel">
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class='col-xs-12 col-sm-9'>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Title <span class="text-danger">*</span></label>
+            <div class="col-sm-8">
+              {{input type="text" name="title" value=holding_item.title class="form-control" placeholder="Title..."}}
+            </div>
+          </div>
+          {{#if (is-equal section 'CIR')}}
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Subtitle <span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{input type="text" name="subtitle" value=holding_item.subtitle class="form-control" placeholder="Subtitle..."}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Cost <span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{input type="string" name="subtitle" value=holding_item.cost class="form-control" placeholder="Book Cost..."}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if (is-equal section 'REF')}}
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Subtitle <span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{input type="text" name="subtitle" value=holding_item.subtitle class="form-control" placeholder="Subtitle..."}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if (is-equal section 'PER')}}
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Volume <span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{input type="text" name="subtitle" value=holding_item.volume class="form-control" placeholder="Volume..."}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Volume Number<span class="text-danger">*</span></label>
+              <div class="col-sm-8">
+                {{input type="text" name="subtitle" value=holding_item.volume_no class="form-control" placeholder="Volume Number..."}}
+              </div>
+            </div>
+          {{/if}}
+          <div class="row">
+            <div class="col-sm-9 col-sm-offset-3">
+              <button class="btn btn-quirk btn-wide btn-success btn-stroke" {{action 'save'}}>Save</button>
+              <button class="btn btn-quirk btn-wide btn-danger btn-stroke" {{action 'delete'}}>Delete</button>
+            </div>
+          </div>
+        </div>
+        <div class='col-xs-12 col-sm-3'>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Authors</label>
+            <div class="col-sm-8">
+              {{#each authors as |author|}}
+                <label class="ckbox ckbox-primary">
+                  <input onchange={{action 'addAuthor' author}} checked={{author.isChecked}} type="checkbox"/><span>{{author.fullName}}</span>
+                </label>
+              {{/each}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Publishers</label>
+            <div class="col-sm-8">
+              {{#each publishers as |publisher|}}
+                <label class="ckbox ckbox-primary">
+                  <input onchange={{action 'addPublisher' publisher}} checked={{publisher.isChecked}} type="checkbox"/><span>{{publisher.name}}</span>
+                </label>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{{/if}}

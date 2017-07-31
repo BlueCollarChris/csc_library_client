@@ -1,0 +1,66 @@
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li class="active">Authors</li>
+  </ol>
+
+  <div class="panel">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6"><h4>Authors</h4></div>
+        <div class="col-xs-6 text-right">
+          <button {{action 'clearFilters'}} class='btn btn-sm btn-stroke btn-danger'>Clear Filters</button>
+          <button {{action 'addAuthor'}} class='btn btn-sm btn-stroke btn-primary'><i class='fa fa-plus'></i>&nbsp;Add Author</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table nomargin">
+          <thead>
+            <tr>
+              <th>Last Name</th>
+              <th>First Name</th>
+              <th class='text-center'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input onchange={{action 'updateParam' 'last_name'}} type='text' class='form-control' value=''/></td>
+              <td><input onchange={{action 'updateParam' 'first_name'}} type='text' class='form-control' value=''/></td>
+              <td class='text-center'>____</td>
+            </tr>
+            {{#each authors as |author|}}
+              <tr>
+                {{#if author.isEditing}}
+                  <td>{{input type='text' class='form-control' value=author.last_name placeholder='Last Name...'}}</td>
+                  <td>{{input type='text' class='form-control' value=author.first_name placeholder='First Name...'}}</td>
+                  <td class='text-center'>
+                    <button {{action 'save' author}} class='btn btn-xs btn-stroke btn-primary'>
+                      <i class="fa fa-save"></i>&nbsp;Save
+                    </button>
+                    <button {{action 'delete' author}} class='btn btn-xs btn-stroke btn-danger'>
+                      <i class="fa fa-trash"></i>&nbsp;Delete
+                    </button>
+                  </td>
+                {{else}}
+                  <td>{{author.last_name}}</td>
+                  <td>{{author.first_name}}</td>
+                  <td class='text-center'>
+                    <button {{action 'edit' author}} class='btn btn-xs btn-stroke btn-primary'>
+                      <i class="fa fa-pencil"></i>&nbsp;Edit
+                    </button>
+                    <button {{action 'delete' author}} class='btn btn-xs btn-stroke btn-danger'>
+                      <i class="fa fa-trash"></i>&nbsp;Delete
+                    </button>
+                  </td>
+                {{/if}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{page-links pagination=pagination routeName='admin.authors'}}
+    </div>
+  </div>
+{{/if}}

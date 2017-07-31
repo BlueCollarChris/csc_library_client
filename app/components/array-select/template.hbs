@@ -1,0 +1,10 @@
+<select class="form-control">
+  {{#if placeholder}}
+    <option value="">{{placeholder}}</option>
+  {{else}}
+    <option value="">Select...</option>
+  {{/if}}
+  {{#each items as |item|}}
+    <option value={{item}}>{{item}}</option>
+  {{/each}}
+</select>

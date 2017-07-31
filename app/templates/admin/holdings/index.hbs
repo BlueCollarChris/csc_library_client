@@ -1,0 +1,38 @@
+{{#if session.data.authenticated.isStaff}}
+  <ol class="breadcrumb breadcrumb-quirk">
+    <li>{{#link-to 'index'}}<i class="fa fa-home mr5"></i>Home{{/link-to}}</li>
+    <li class="active">Holdings</li>
+  </ol>
+
+  <div class="panel">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6"><h4>Library Holdings</h4></div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table nomargin">
+          <thead>
+            <tr>
+              <th class='text-center'>View</th>
+              <th>Title</th>
+              <th>Section</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each holdings as |holding|}}
+              <tr>
+                <td class='text-center'>
+                  {{#link-to 'admin.holdings.view' holding.id}}<i class="fa fa-search"></i>{{/link-to}}
+                </td>
+                <td>{{holding.title}}</td>
+                <td>{{holding.section}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{/if}}
