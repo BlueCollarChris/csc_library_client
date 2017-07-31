@@ -46,7 +46,8 @@ export default Ember.Controller.extend({
         this.get('holding_item').set('publisher_id', '');
         publisher.set('isChecked', false);
         return;
-      }      
+      }
+      
       this.get('holding_item').set('publisher_id', publisher.get('id'));
       this.get('publishers').forEach((pub)=>{
         if(publisher.get('id') === pub.get('id')){
