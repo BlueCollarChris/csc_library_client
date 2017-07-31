@@ -36,9 +36,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.HOST = 'https://csc-library-app.herokuapp.com/'
+    ENV.HOST = 'https://csc-library-app.herokuapp.com'
   }
-  
+
 
   return ENV;
 };
