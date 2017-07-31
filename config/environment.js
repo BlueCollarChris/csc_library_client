@@ -36,7 +36,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.HOST = 'http://localhost:3000'
+    ENV.HOST = 'https://csc-library-app.herokuapp.com/'
   }
 
   return ENV;
