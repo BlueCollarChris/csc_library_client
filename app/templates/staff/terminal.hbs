@@ -102,7 +102,7 @@
                 <div class="col-xs-10">
                   <button {{action 'submit'}} class='btn btn-sm btn-success btn-stroke btn-block'>Submit</button>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
@@ -118,7 +118,11 @@
             <div class="row">
               {{#each results as |result|}}
                 <div class='col-sm-2 col-xs-4'>
-                  <button {{action 'selectUser' result.id}} class='btn btn-sm btn-stroke btn-primary'>Select</button>
+                  {{#if (is-equal result.id user)}}
+                    <button class='btn btn-sm btn-success btn-stroke'><i class='fa fa-check'></i></button>
+                  {{else}}
+                    <button {{action 'selectUser' result.id}} class='btn btn-sm btn-stroke btn-danger'>Select</button>
+                  {{/if}}
                 </div>
                 <div class='col-sm-10 col-xs-8'>
                   <p>
