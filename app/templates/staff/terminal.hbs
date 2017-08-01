@@ -63,36 +63,38 @@
               </div>
             </div>
             {{#each books as |item|}}
-              <div class="col-xs-4 col-sm-2">
-                {{#if (is-equal item.id book)}}
-                  <button {{action 'selectBook' item.id}} class='btn btn-sm btn-success btn-stroke'><i class='fa fa-check'></i></button>
-                {{else}}
-                  <button {{action 'selectBook' item.id}} class='btn btn-sm btn-warning btn-stroke'>Select</button>
-                {{/if}}
-              </div>
-              <div class="col-xs-8 col-sm-10">
-                <p>
-                  <strong>{{item.title}}</strong><br/>
-                  {{#if item.subtitle}}
-                    {{item.subtitle}}<br/>
+              <div class="row">
+                <div class="col-xs-4 col-sm-2">
+                  {{#if (is-equal item.id book)}}
+                    <button {{action 'selectBook' item.id}} class='btn btn-sm btn-success btn-stroke'><i class='fa fa-check'></i></button>
+                  {{else}}
+                    <button {{action 'selectBook' item.id}} class='btn btn-sm btn-warning btn-stroke'>Select</button>
                   {{/if}}
-                  {{#if item.volume}}
-                    Volume: {{item.volume}}<br/>
-                  {{/if}}
-                  {{#if item.volume_no}}
-                    Number: {{item.volume_no}}<br/>
-                  {{/if}}
-                  {{#if item.publisher}}
-                    Publisher: {{item.publisher}}<br/>
-                  {{/if}}
-                  {{#if item.authors}}
-                    Authors:
-                    {{#each item.authors as |author|}}
-                      {{author}}
-                    {{/each}}
-                    <br/>
-                  {{/if}}
-                </p>
+                </div>
+                <div class="col-xs-8 col-sm-10">
+                  <p>
+                    <strong>{{item.title}}</strong><br/>
+                    {{#if item.subtitle}}
+                      {{item.subtitle}}<br/>
+                    {{/if}}
+                    {{#if item.volume}}
+                      Volume: {{item.volume}}<br/>
+                    {{/if}}
+                    {{#if item.volume_no}}
+                      Number: {{item.volume_no}}<br/>
+                    {{/if}}
+                    {{#if item.publisher}}
+                      Publisher: {{item.publisher}}<br/>
+                    {{/if}}
+                    {{#if item.authors}}
+                      Authors:
+                      {{#each item.authors as |author|}}
+                        {{author}}
+                      {{/each}}
+                      <br/>
+                    {{/if}}
+                  </p>
+                </div>
               </div>
             {{/each}}
             <div class="col-xs-10">
