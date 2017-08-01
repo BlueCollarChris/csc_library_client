@@ -111,9 +111,9 @@
           <div class="row">
             <div class="col-sm-9 col-sm-offset-3">
               {{#if user.isEditng}}
-                <button class="btn btn-quirk btn-wide btn-success btn-stroke">Save</button>
+                <button {{action 'save'}} class="btn btn-quirk btn-wide btn-success btn-stroke">Save</button>
               {{else}}
-                <button class="btn btn-quirk btn-wide btn-primary btn-stroke">Edit</button>
+                <button {{action 'edit'}} class="btn btn-quirk btn-wide btn-primary btn-stroke">Edit</button>
                 <button class="btn btn-quirk btn-wide btn-danger btn-stroke" {{action 'requestPassword'}}>Request New Password</button>
               {{/if}}
             </div>
