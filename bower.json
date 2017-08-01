@@ -1,0 +1,20 @@
+{
+  "name": "library-client",
+  "description": "Small description for library-client goes here",
+  "main": "",
+  "authors": [
+    "Chris Kempton <kempt09@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kempt09/csc_library_client",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.18.1"
+  }
+}
