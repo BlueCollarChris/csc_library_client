@@ -31,9 +31,9 @@
                 <td class='text-center'>
                   {{#link-to 'admin.users.view' record.user.id}}<i class="fa fa-search"></i>{{/link-to}}
                 </td>
-                <td>{{format-date record.log_entry.chekout_dt}}</td>
+                <td>{{format-date record.log_entry.checkout_dt}}</td>
                 <td>{{format-date record.log_entry.due_dt}}</td>
-                <td>{{record.holding.name}}</td>
+                <td>{{record.holding.section}}</td>
                 <td>{{record.item.title}}</td>
                 <td>{{record.user.last_name}}, {{record.user.first_name}}</td>
                 <td>{{record.user.email}}</td>

@@ -8,6 +8,7 @@ export default DS.Model.extend({
   user_id: DS.attr('number'),
   holding_id: DS.attr('number'),
   item_id: DS.attr('number'),
+  section: DS.attr('string'),
   checkout_dt: DS.attr('date'),
   checkin_dt: DS.attr('date'),
   due_dt: DS.attr('date'),

@@ -4,6 +4,9 @@ export function isEqual(params, options) {
   let collection = params[0];
   let value = params[1];
   console.log(params)
+  if(!params[0] || !params[1]){
+    return false;
+  }
   if(options.collection === 'true'){
     let match = value.filter((item)=>{
       if(item.get('id').toString() === value.toString()){
