@@ -63,6 +63,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     willTransition(){
       let item = this.controller.get('holding_item');
+      let pubs = this.controller.get('publishers');
+      let authors = this.controller.get('authors');
+      pubs.forEach((pub)=>{
+        pub.set('isChecked', false);
+      });
+      authors.forEach((auth)=>{
+        auth.set('isChecked', false);
+      });
       this.controller.set('section', null);
       if(item.get('hasDirtyAttributes')){
         item.rollbackAttributes();

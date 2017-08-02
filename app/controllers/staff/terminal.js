@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   title: '',
   user: null,
   section: null,
+  noResults: false,
   book: '',
   due_dt: null,
   currentItems: '',
@@ -63,7 +64,7 @@ export default Ember.Controller.extend({
           user_id: user
         }
       }).then((response)=>{
-        this.set('currentItems', response.data);
+        this.set('currentItems', response);
       }, ()=>{
         alert('Error Searching For User');
       });
@@ -72,6 +73,7 @@ export default Ember.Controller.extend({
       this.set('section', element.target.value);
     },
     searchBook(){
+      this.set('noResults', false);
       const session = this.get('session');
       const section = this.get('section');
       const title = this.get('title')
@@ -87,7 +89,11 @@ export default Ember.Controller.extend({
             title: title
           }
         }).then((response)=>{
-          this.set('books', response);
+          if(!response.length || response.data.length < 1){
+            this.set('noResults', true);
+          } else {
+            this.set('books', response);
+          }
         }, ()=>{
           alert('Error Searching For Books');
         });
@@ -129,6 +135,7 @@ export default Ember.Controller.extend({
         email: '',
         phone: '',
         title: '',
+        noResults: false,
         user: null,
         section: "CIR",
         book: null,
@@ -141,6 +148,25 @@ export default Ember.Controller.extend({
     },
     closeAlert(){
       this.set('success', false);
+    },
+    returnItem(log){
+      const session = this.get('session');
+      Ember.$.ajax({
+        method: "POST",
+        url: `${ENV.HOST}/checkin`,
+        headers: {
+          'Authorization': session.get('data.authenticated.token')
+        },
+        data: {
+          item_id: log.item_id,
+          holding_id: log.holding_id,
+          user_id: log.user_id
+        }
+      }).then(()=>{
+        this.get('currentItems').removeObject(log);
+      }, ()=>{
+        alert('Error Returning Item');
+      });
     }
   }
 });
