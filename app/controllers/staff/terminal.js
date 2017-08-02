@@ -89,10 +89,12 @@ export default Ember.Controller.extend({
             title: title
           }
         }).then((response)=>{
-          if(!response.length || response.data.length < 1){
+          if(!response.data){
+            this.set('noResults', true);
+          } else if(response.data.length < 1){
             this.set('noResults', true);
           } else {
-            this.set('books', response);
+            this.set('books', response.data);
           }
         }, ()=>{
           alert('Error Searching For Books');
