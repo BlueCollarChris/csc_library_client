@@ -18,8 +18,8 @@ export default Ember.Controller.extend({
   }),
   actions: {
     delete(){
-      this.get('holding_item').destroyRecord.then(()=>{
-        this.transitionToRoute('admin.holdings.view', response.get('holding_id'));
+      this.get('holding_item').destroyRecord().then(()=>{
+        this.transitionToRoute('admin.holdings.view', this.get('holding_item').get('holding_id'));
       });
     },
     save(){
