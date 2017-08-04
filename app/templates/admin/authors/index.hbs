@@ -25,11 +25,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {{!-- <tr>
               <td><input onchange={{action 'updateParam' 'last_name'}} type='text' class='form-control' value=''/></td>
               <td><input onchange={{action 'updateParam' 'first_name'}} type='text' class='form-control' value=''/></td>
               <td class='text-center'>____</td>
-            </tr>
+            </tr> --}}
             {{#each authors as |author|}}
               <tr>
                 {{#if author.isEditing}}
